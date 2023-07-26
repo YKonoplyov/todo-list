@@ -1,6 +1,8 @@
 import os
 from pathlib import Path
 
+from django.urls import reverse, reverse_lazy
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-k5#r_c57fql)=l@75c5s@l)3)cqzr3jzpt@cyn9n%vlv(_@1lg'
@@ -89,3 +91,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "todo_list.User"
+
+LOGIN_REDIRECT_URL = reverse_lazy("todo_list:task-list")
