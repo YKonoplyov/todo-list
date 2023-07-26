@@ -10,6 +10,12 @@
       {{ task.id }} {{ task.content }} {{ task.created_at }}
       <a href="{% url 'todo_list:task-update' pk=task.pk %}">Update</a>
       <a href="{% url 'todo_list:task-delete' pk=task.pk %}">Delete</a>
+      <br>
+      {% if not task.is_completed %}
+        <a href="{% url 'todo_list:task-change' task_id=task.pk %}">Complete task</a>
+      {% else %}
+        <a href="{% url 'todo_list:task-change' task_id=task.pk %}">Undo</a>
+      {% endif %}
     </p>
   {% endfor %}
 
