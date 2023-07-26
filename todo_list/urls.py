@@ -1,9 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.forms import UserCreationForm
 from django.urls import path
 from todo_list.views import (TaskListView, TagListView, TagCreateView,
                              TagUpdateView, TagDeleteView, TaskCreateView,
                              TaskUpdateView, TaskDeleteView,
-                             change_task_statement)
+                             change_task_statement, UserCreateView)
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="task-list"),
@@ -34,7 +35,8 @@ urlpatterns = [
             "tag_list/<int:pk>/delete",
             TagDeleteView.as_view(),
             name="tag-delete"
-        )
+        ),
+    path("register/", UserCreateView.as_view(), name="register")
 ]
 
 app_name = "todo_list"
