@@ -18,6 +18,7 @@ class TaskForm(forms.ModelForm):
                     "type": "datetime-local"
                 }
             ),
+            "tags": forms.CheckboxSelectMultiple(),
 
         }
 
