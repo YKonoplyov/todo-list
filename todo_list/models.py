@@ -27,4 +27,4 @@ class Task(models.Model):
     user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
     class Meta:
-        ordering = ["-is_completed", "-created_at"]
+        ordering = ["is_completed", "-created_at"]
