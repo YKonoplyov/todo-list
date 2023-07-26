@@ -16,6 +16,9 @@ class TaskListView(generic.ListView):
 
     paginate_by = 5
 
+    def get_queryset(self):
+        self.queryset = Task.objects.filter(user__id=self.request.user.id)
+        return self.queryset
 
 class TaskCreateView(generic.CreateView):
     model = Task
