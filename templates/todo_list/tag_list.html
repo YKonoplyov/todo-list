@@ -1,12 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Tags <a href="{%  url 'todo_list:tag-create' %}">Create tag</a></h1>
-  {% for tag in tag_list %}
-    <p>{{ tag.id }} {{ tag.name }}
-      <a href="{% url 'todo_list:tag-update' pk=tag.pk %}">Update</a>
-       <a href="{% url 'todo_list:tag-delete' pk=tag.pk%}">Delete</a>
-    </p>
-  {% endfor %}
+  <div class="col-sm-5">
+    <h1>Tags <a href="{%  url 'todo_list:tag-create' %}"><button class="btn btn-primary float-right mt-2" >Create tag</button></a></h1>
+  </div>
+  <ul class="list-group">
+    {% for tag in tag_list %}
+      <li class="list-group-item list-unstyled">
+        <p>
+          {{ tag.name }}
+          <a href="{% url 'todo_list:tag-update' pk=tag.pk %}"><button class="btn-primary btn">Update</button></a>
+          <a href="{% url 'todo_list:tag-delete' pk=tag.pk%}"><button class="btn-danger btn">Delete</button></a>
+        </p>
+      </li>
+    {% endfor %}
+  </ul>
 
 {% endblock %}

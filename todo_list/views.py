@@ -20,6 +20,7 @@ class TaskListView(generic.ListView):
         self.queryset = Task.objects.filter(user__id=self.request.user.id)
         return self.queryset
 
+
 class TaskCreateView(generic.CreateView):
     model = Task
     form_class = TaskForm

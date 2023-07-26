@@ -1,22 +1,64 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>
-    Your tasks:
-    <a href="{% url 'todo_list:task-create' %}">Create task</a>
-  </h1>
-  {% for task in task_list %}
-    <p>
-      {{ task.id }} {{ task.content }} {{ task.created_at }}
-      <a href="{% url 'todo_list:task-update' pk=task.pk %}">Update</a>
-      <a href="{% url 'todo_list:task-delete' pk=task.pk %}">Delete</a>
-      <br>
-      {% if not task.is_completed %}
-        <a href="{% url 'todo_list:task-change' task_id=task.pk %}">Complete task</a>
-      {% else %}
-        <a href="{% url 'todo_list:task-change' task_id=task.pk %}">Undo</a>
+  <div class="col-sm-5">
+    <h1>
+      Your tasks:
+      <a href="{% url 'todo_list:task-create' %}"><button class="btn btn-primary float-right mt-2" >Create task</button></a>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="container-fluid w-100">
+      {% if not user.is_authenticated %}
+        <p>Login or register to create and see tasks</p>
+
       {% endif %}
-    </p>
-  {% endfor %}
+      {% if not task_list %}
+        <p>You don`t have any tasks</p>
+      {% endif %} 
+      {% for task in task_list %}
+        <div class="border border-secondary m-1 rounded w-50">
+          <div class="m-2">
+            <p>
+              <h1>{{ task.content }}
+                <span class="float-right mr-2">
+                  {% if not task.is_completed %}
+                    <a href="{% url 'todo_list:task-change' task_id=task.pk %}">
+                      <button class="btn btn-success">Complete task</button>
+                    </a>
+                  {% else %}
+                    <a href="{% url 'todo_list:task-change' task_id=task.pk %}">
+                      <button class="btn btn-secondary">Undo</button>
+                    </a>
+                  {% endif %}
+                </span>
+              </h1>
+              <br>
+              <p>Created at: {{ task.created_at }}. Deadline:
+                {% if task.deadline %}
+                  {{ task.deadline }}
+                {% else %}
+                   None
+                {% endif %}
+              </p>
+              <br>
+              <p>Is completed:
+                {% if task.is_completed %}
+                  <span class="bg-success rounded pr-1 pl-3"></span>
+                {% else %}
+                  <span class="bg-danger rounded pr-1 pl-3"></span>
+                {% endif %}
+              </p>
+              <div>
+                <a href="{% url 'todo_list:task-update' pk=task.pk %}"><button class="btn btn-secondary">Update</button></a>
+                <a href="{% url 'todo_list:task-delete' pk=task.pk %}"><button class="btn btn-danger">Delete</button></a>
+              </div>
+              <br>
+
+            </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
 
 {% endblock %}

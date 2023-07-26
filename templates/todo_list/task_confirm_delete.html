@@ -4,7 +4,7 @@
   <h1>Delete {{ tage.name }}?</h1>
   <form action="" method="post">
     {% csrf_token %}
-    <input type="submit" value="Yes">
-    <button onclick="history.back()">No</button>
+    <input type="submit" value="Yes" class="btn btn-danger">
+    <button class="btn btn-success" onclick="history.back()">No</button>
   </form>
 {% endblock %}
