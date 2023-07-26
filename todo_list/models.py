@@ -12,6 +12,9 @@ class User(AbstractUser):
 class Tag(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 
 class Task(models.Model):
     content = models.TextField()
