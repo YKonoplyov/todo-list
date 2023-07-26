@@ -16,7 +16,7 @@ class PublicTaskViewsTests(TestCase):
         self.assertEquals(response.status_code, 200)
 
 
-class PrivateCarViewsTests(TestCase):
+class PrivateTaskViewsTests(TestCase):
     def setUp(self):
         self.user1 = get_user_model().objects.create_user(
             username="inokentiy",
