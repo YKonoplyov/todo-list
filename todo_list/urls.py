@@ -2,7 +2,8 @@ from django.contrib import admin
 from django.urls import path
 from todo_list.views import (TaskListView, TagListView, TagCreateView,
                              TagUpdateView, TagDeleteView, TaskCreateView,
-                             TaskUpdateView, TaskDeleteView)
+                             TaskUpdateView, TaskDeleteView,
+                             change_task_statement)
 
 urlpatterns = [
     path("", TaskListView.as_view(), name="task-list"),
@@ -16,6 +17,11 @@ urlpatterns = [
         "task_delete/<int:pk>/",
         TaskDeleteView.as_view(),
         name="task-delete"
+    ),
+    path(
+        "task_change_state/<int:task_id>/",
+        change_task_statement,
+        name="task-change"
     ),
     path("tag_list", TagListView.as_view(), name="tag-list"),
     path("tag_list/create", TagCreateView.as_view(), name="tag-create"),
