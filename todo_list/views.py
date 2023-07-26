@@ -8,6 +8,8 @@ from todo_list.models import Task, Tag
 class TaskListView(generic.ListView):
     model = Task
 
+    paginate_by = 5
+
 
 class TaskCreateView(generic.CreateView):
     model = Task
@@ -28,6 +30,8 @@ class TaskDeleteView(generic.DeleteView):
 
 class TagListView(generic.ListView):
     model = Tag
+
+    paginate_by = 5
 
 
 class TagCreateView(generic.CreateView):
