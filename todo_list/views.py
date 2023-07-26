@@ -1,8 +1,14 @@
+from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from todo_list.forms import TaskForm
+from todo_list.forms import TaskForm, UserForm
 from todo_list.models import Task, Tag
+
+
+class UserCreateView(generic.CreateView):
+    model = get_user_model()
+    form_class = UserForm
 
 
 class TaskListView(generic.ListView):
